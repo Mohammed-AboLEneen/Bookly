@@ -88,6 +88,10 @@ flutter:
     - family: Tektur
       fonts:
         - asset: assets/fonts/Tektur-VariableFont_wdth,wght.ttf
+
+    - family: Sectra
+      fonts:
+        - asset: assets/fonts/GT Sectra Fine Regular.ttf
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf

@@ -1,7 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import '../../../../../core/utils/assets.dart';
 
 class SearchSvgIcon extends StatelessWidget {
   const SearchSvgIcon({super.key});
@@ -24,7 +24,7 @@ class SearchSvgIcon extends StatelessWidget {
             width: 25.w,
             height: 25.h,
             child: SvgPicture.asset(
-              'assets/images/search.svg',
+              AssetsClass.searchIconImage,
 
             ),
           ),
