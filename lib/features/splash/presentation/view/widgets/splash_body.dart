@@ -75,7 +75,7 @@ class _SplashViewWidgetState extends State<SplashViewWidget> with SingleTickerPr
 
     _animationController = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 1),
+      duration: const Duration(seconds: 2),
     );
 
     // Define the slide animation using Tween and CurvedAnimation
