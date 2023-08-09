@@ -8,6 +8,8 @@ class TopListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+
+      physics: const BouncingScrollPhysics(),
       itemBuilder: (context, index) => Padding(
         padding: EdgeInsets.only(right: 8.0.w),
         child: const ListViewItem(),

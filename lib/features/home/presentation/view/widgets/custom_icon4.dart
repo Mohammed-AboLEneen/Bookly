@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
-import '../../../../../core/utils/assets.dart';
 
-class SearchSvgIcon extends StatelessWidget {
-  const SearchSvgIcon({super.key});
+
+class CustomIcon extends StatelessWidget {
+
+  const CustomIcon({super.key, required this.width, required this.height, required this.widget});
+
+  final double width;
+  final double height;
+  final Widget widget;
 
   @override
   Widget build(BuildContext context) {
@@ -21,12 +25,9 @@ class SearchSvgIcon extends StatelessWidget {
           padding: const EdgeInsets.all(5),
           child: SizedBox(
 
-            width: 25.w,
-            height: 25.h,
-            child: SvgPicture.asset(
-              AssetsClass.searchIconImage,
-
-            ),
+            width: width.w,
+            height: height.h,
+            child: widget,
           ),
         ),
       ),

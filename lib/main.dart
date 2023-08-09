@@ -1,9 +1,7 @@
-import 'package:bookly/features/home/presentation/view/home_view.dart';
+import 'package:bookly/core/utils/routers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import 'features/splash/presentation/view/splash_view.dart';
 
 
@@ -23,14 +21,14 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (context, child){
 
-        return GetMaterialApp(
+        return MaterialApp.router(
 
+          routerConfig: BooklyRouters.router,
           theme: ThemeData.dark().copyWith(
 
-            scaffoldBackgroundColor: const Color(0xff100B20),
-            textTheme: GoogleFonts.montserratAlternatesTextTheme(ThemeData.dark().textTheme)
+              scaffoldBackgroundColor: const Color(0xff100B20),
+              textTheme: GoogleFonts.montserratAlternatesTextTheme(ThemeData.dark().textTheme)
           ),
-          home: const HomeView(),
           debugShowCheckedModeBanner: false,
         );
       },

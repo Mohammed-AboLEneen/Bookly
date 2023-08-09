@@ -1,10 +1,10 @@
-import 'package:bookly/features/home/presentation/view/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../constants.dart';
 import '../../../../../core/utils/assets.dart';
+import '../../../../../core/utils/routers.dart';
 
 class SplashViewWidget extends StatefulWidget {
   const SplashViewWidget({super.key});
@@ -25,7 +25,7 @@ class _SplashViewWidgetState extends State<SplashViewWidget>
     animation();
 
     Future.delayed(const Duration(seconds: 3), () {
-      Get.to(() => HomeView(), transition: Transition.leftToRight);
+      context.push(BooklyRouters.homeView);
     });
   }
 

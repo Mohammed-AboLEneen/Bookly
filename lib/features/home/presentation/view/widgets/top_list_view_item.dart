@@ -1,13 +1,11 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 class ListViewItem extends StatelessWidget {
   const ListViewItem({super.key});
 
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
-      aspectRatio: 135 / 224,
+      aspectRatio: 2.7/4,
       child: ClipRRect(
 
           borderRadius: BorderRadius.circular(16),
