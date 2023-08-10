@@ -1,11 +1,10 @@
 import 'package:bookly/core/utils/assets.dart';
 import 'package:bookly/core/utils/styles.dart';
-import 'package:bookly/features/home/presentation/view/widgets/custom_icon4.dart';
-import 'package:bookly/features/home/presentation/view/widgets/top_list_view.dart';
-import 'package:flutter/material.dart';
+import 'package:bookly/features/home/presentation/view/widgets/custom_icon4.dart';import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'best_seller_list_view.dart';
+import 'books_list.dart';
 
 
 class HomeViewBody extends StatelessWidget {
@@ -42,7 +41,7 @@ class HomeViewBody extends StatelessWidget {
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * .3,
-              child: const TopListView(),
+              child: const BookListView(),
             ),
             SizedBox(
               height: 49.h,

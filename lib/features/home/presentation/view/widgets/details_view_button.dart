@@ -21,7 +21,7 @@ class DetailsViewButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: SizedBox(
-        height: 55.h,
+        height: 50.h,
         child: TextButton(
           onPressed: () {},
           style: TextButton.styleFrom(
@@ -31,7 +31,7 @@ class DetailsViewButton extends StatelessWidget {
           child: Text(
             text,
             style: TextStyle(
-                fontWeight: FontWeight.bold,
+
                 color: fontColor,
                 fontSize: fontSize),
           ),
