@@ -1,19 +1,32 @@
+/// containsEpubBubbles : false
+/// containsImageBubbles : false
+
 class PanelizationSummary {
   PanelizationSummary({
-      this.containsEpubBubbles, 
-      this.containsImageBubbles,});
+      bool? containsEpubBubbles, 
+      bool? containsImageBubbles,}){
+    _containsEpubBubbles = containsEpubBubbles;
+    _containsImageBubbles = containsImageBubbles;
+}
 
   PanelizationSummary.fromJson(dynamic json) {
-    containsEpubBubbles = json['containsEpubBubbles'];
-    containsImageBubbles = json['containsImageBubbles'];
+    _containsEpubBubbles = json['containsEpubBubbles'];
+    _containsImageBubbles = json['containsImageBubbles'];
   }
-  bool containsEpubBubbles;
-  bool containsImageBubbles;
+  bool? _containsEpubBubbles;
+  bool? _containsImageBubbles;
+PanelizationSummary copyWith({  bool? containsEpubBubbles,
+  bool? containsImageBubbles,
+}) => PanelizationSummary(  containsEpubBubbles: containsEpubBubbles ?? _containsEpubBubbles,
+  containsImageBubbles: containsImageBubbles ?? _containsImageBubbles,
+);
+  bool? get containsEpubBubbles => _containsEpubBubbles;
+  bool? get containsImageBubbles => _containsImageBubbles;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
-    map['containsEpubBubbles'] = containsEpubBubbles;
-    map['containsImageBubbles'] = containsImageBubbles;
+    map['containsEpubBubbles'] = _containsEpubBubbles;
+    map['containsImageBubbles'] = _containsImageBubbles;
     return map;
   }
 

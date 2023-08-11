@@ -1,19 +1,32 @@
+/// type : "ISBN_10"
+/// identifier : "1590282418"
+
 class IndustryIdentifiers {
   IndustryIdentifiers({
-      this.type, 
-      this.identifier,});
+      String? type, 
+      String? identifier,}){
+    _type = type;
+    _identifier = identifier;
+}
 
   IndustryIdentifiers.fromJson(dynamic json) {
-    type = json['type'];
-    identifier = json['identifier'];
+    _type = json['type'];
+    _identifier = json['identifier'];
   }
-  String type;
-  String identifier;
+  String? _type;
+  String? _identifier;
+IndustryIdentifiers copyWith({  String? type,
+  String? identifier,
+}) => IndustryIdentifiers(  type: type ?? _type,
+  identifier: identifier ?? _identifier,
+);
+  String? get type => _type;
+  String? get identifier => _identifier;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
-    map['type'] = type;
-    map['identifier'] = identifier;
+    map['type'] = _type;
+    map['identifier'] = _identifier;
     return map;
   }
 
