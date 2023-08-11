@@ -6,15 +6,17 @@ import 'package:dio/dio.dart';
 
 class HomeRepoImplement implements HomeRepo {
   @override
-  Future<Either<ServerFailure, List<BookModel>>> fetchFeaturedBooks() async {
-    // TODO: implement fetchFeaturedBooks
+  Future<Either<ServerFailure, List<BookModel>>> fetchFeaturedBooks(String queryParams) async {
+
+    // &Sorting=newest
+    // https://www.googleapis.com/books/v1/volumes?Filtering=free-ebooks&q=computer science
 
     Dio dio = Dio();
 
     try{
 
       Response response = await dio.get(
-          'https://www.googleapis.com/books/v1/volumes?Filtering=free-ebooks&q=subject:computer science');
+          'https://www.googleapis.com/books/v1/volumes?Filtering=free-ebooks$queryParams&q=subject:computer science');
 
       List<BookModel> books = [];
 
@@ -27,14 +29,12 @@ class HomeRepoImplement implements HomeRepo {
 
     }catch(e){
 
+      if(e is DioException){
+
+        return Left(ServerFailure.fromError(e));
+      }
+
+      return Left(ServerFailure(e.toString()));
     }
-
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<Either<ServerFailure, List<BookModel>>> fetchNewestBooks() {
-    // TODO: implement fetchNewestBooks
-    throw UnimplementedError();
   }
 }
