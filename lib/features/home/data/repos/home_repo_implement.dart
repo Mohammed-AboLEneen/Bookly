@@ -20,7 +20,7 @@ class HomeRepoImplement implements HomeRepo {
 
       List<BookModel> books = [];
 
-      for (var element in response.data) {
+      for (var element in response.data['items']) {
 
         books.add(BookModel.fromJson(element));
       }
@@ -33,6 +33,8 @@ class HomeRepoImplement implements HomeRepo {
 
         return Left(ServerFailure.fromError(e));
       }
+
+      print(e.toString());
 
       return Left(ServerFailure(e.toString()));
     }

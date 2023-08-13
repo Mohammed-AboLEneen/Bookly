@@ -5,7 +5,7 @@ import 'package:bookly/features/home/data/repos/home_repo_implement.dart';
 import 'Newest_books_states.dart';
 
 class NewestBooksCubit extends Cubit<NewestBooksStates> {
-  NewestBooksCubit(super.initialState);
+  NewestBooksCubit() : super(NewestBooksInit());
 
   final HomeRepo homeRepo = HomeRepoImplement();
 
@@ -13,6 +13,13 @@ class NewestBooksCubit extends Cubit<NewestBooksStates> {
     var result = await homeRepo.fetchFeaturedBooks('&Sorting=newest');
 
     result.fold((failure) => emit(NewestBooksFailure(failure.message)),
-            (books) => emit(NewestBooksSuccess(books)));
+        (books) {
+
+      for(var e in books){
+
+        print('image: ${e.volumeInfo?.imageLinks?.smallThumbnail}');
+      }
+      return emit(NewestBooksSuccess(books));
+    });
   }
 }

@@ -5,11 +5,14 @@ import 'package:go_router/go_router.dart';
 import '../../../../../constants.dart';
 import '../../../../../core/utils/routers.dart';
 import '../../../../../core/utils/styles.dart';
+import '../../../data/models/book_model/BookModel.dart';
 import 'book_item.dart';
 import 'book_rating.dart';
 
 class BestSellerListViewItem extends StatelessWidget {
-  const BestSellerListViewItem({super.key});
+
+  final BookModel book;
+  const BestSellerListViewItem({super.key, required this.book});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +28,7 @@ class BestSellerListViewItem extends StatelessWidget {
         height: 110,
         child: Row(
           children: [
-            const ListViewItem(),
+            ListViewItem(imageUrl: book.volumeInfo?.imageLinks?.smallThumbnail ?? '',),
             SizedBox(
               width: 30.w,
             ),

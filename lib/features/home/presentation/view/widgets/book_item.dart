@@ -1,6 +1,12 @@
+import 'package:bookly/features/home/presentation/view/widgets/cashed_image.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_svg/svg.dart';
+
+import '../../../../../core/utils/assets.dart';
 class ListViewItem extends StatelessWidget {
-  const ListViewItem({super.key});
+
+  final String? imageUrl;
+  const ListViewItem({super.key, required this.imageUrl});
 
   @override
   Widget build(BuildContext context) {
@@ -10,8 +16,8 @@ class ListViewItem extends StatelessWidget {
 
           borderRadius: BorderRadius.circular(16),
 
-          child: Image.asset(
-            'assets/images/undraw_Drink_coffee_v3au.png', fit: BoxFit.cover,
+          child: BuildCashedImage(
+            imageUrl: imageUrl ?? '',
           )
       ),
     );

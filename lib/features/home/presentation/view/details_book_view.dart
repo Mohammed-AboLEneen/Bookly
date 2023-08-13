@@ -38,7 +38,7 @@ class DetailsBookView extends StatelessWidget {
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: size.width * .22),
-                    child: const ListViewItem(),
+                    child: const ListViewItem(imageUrl: 'http://books.google.com/books/content?id=BOyCSAAACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api',),
                   ),
                   const SizedBox(
                     height: 40,
