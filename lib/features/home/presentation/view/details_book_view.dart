@@ -1,31 +1,48 @@
 import 'package:bookly/core/utils/styles.dart';
-import 'package:bookly/features/home/presentation/view/widgets/book_item.dart';
+import 'package:bookly/features/home/data/models/book_model/BookModel.dart';
+import 'package:bookly/features/home/presentation/view/widgets/featured_book_item.dart';
 import 'package:bookly/features/home/presentation/view/widgets/book_rating.dart';
 import 'package:bookly/features/home/presentation/view/widgets/custom_details_view_app_bar.dart';
 import 'package:bookly/features/home/presentation/view/widgets/details_view_button.dart';
 import 'package:bookly/features/home/presentation/view/widgets/similar_books_list.dart';
+import 'package:bookly/features/home/presentation/view_model/simillar_books_cubit/similar_books_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class DetailsBookView extends StatelessWidget {
-  const DetailsBookView({super.key});
+class DetailsBookView extends StatefulWidget {
+  const DetailsBookView({super.key, required this.bookModel});
 
+  final BookModel bookModel;
 
+  @override
+  State<DetailsBookView> createState() => _DetailsBookViewState();
+}
+
+class _DetailsBookViewState extends State<DetailsBookView> {
+
+  @override
+  void initState() {
+    super.initState();
+
+    BlocProvider.of<SimilarBooksCubit>(context).fetchSimilarBooks();
+  }
   @override
   Widget build(BuildContext context) {
 
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: CustomScrollView(
-
+        physics: const BouncingScrollPhysics(),
         slivers: [
 
           SliverFillRemaining(
 
             hasScrollBody: false,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 25.0),
               child: Column(
+
 
                 children: [
 
@@ -38,21 +55,31 @@ class DetailsBookView extends StatelessWidget {
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: size.width * .22),
-                    child: const ListViewItem(imageUrl: 'http://books.google.com/books/content?id=BOyCSAAACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api',),
+                    child: FeaturedBookItem(imageUrl: widget.bookModel.volumeInfo?.imageLinks?.smallThumbnail,),
                   ),
                   const SizedBox(
                     height: 40,
                   ),
-                  Text('The Jungle Book', style: BooklyStyles.textStyle30,),
-                  const SizedBox(
-                    height: 6,
-                  ),
-                  Opacity(
-                    opacity: .7,
-                    child: Text('Rudyard Kipling', style: BooklyStyles.textStyle18.copyWith(
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: size.width*.07),
+                    child: Column(
 
-                        fontWeight: FontWeight.w500
-                    ),),
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+
+                        Text(widget.bookModel.volumeInfo?.title ?? 'No Title', style: BooklyStyles.textStyle30,),
+                        const SizedBox(
+                          height: 6,
+                        ),
+                        Opacity(
+                          opacity: .7,
+                          child: Text(widget.bookModel.volumeInfo?.authors?[0] ?? 'No Authors', style: BooklyStyles.textStyle18.copyWith(
+
+                              fontWeight: FontWeight.w500
+                          ),),
+                        ),
+                      ],
+                    ),
                   ),
                   SizedBox(
                     height: 14.h,
@@ -112,7 +139,7 @@ class DetailsBookView extends StatelessWidget {
                   SizedBox(
 
                     height: size.height *.15,
-                    child: SimilarBooksList(),
+                    child: const SimilarBooksList(),
 
                   ),
 

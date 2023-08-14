@@ -5,7 +5,6 @@ import 'package:bookly/features/home/presentation/view_model/newest_books_cubit/
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BestSellerListView extends StatelessWidget {
   const BestSellerListView({super.key});
@@ -28,9 +27,9 @@ class BestSellerListView extends StatelessWidget {
           itemCount: state.books.length,
         );
       } else if (state is NewestBooksFailure) {
-        return const Center(
+        return Center(
           child: Text(
-            'Some Thing is Wrong, try Again!',
+            state.message!,
             style: BooklyStyles.textStyle18,
           ),
         );

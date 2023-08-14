@@ -4,7 +4,7 @@ import 'package:bookly/features/home/presentation/view/widgets/custom_icon4.dart
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'best_seller_list_view.dart';
-import 'books_list.dart';
+import 'featured_books_list.dart';
 
 
 class HomeViewBody extends StatelessWidget {
@@ -41,7 +41,7 @@ class HomeViewBody extends StatelessWidget {
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * .3,
-              child: const BookListView(),
+              child: const FeaturedListView(),
             ),
             SizedBox(
               height: 49.h,

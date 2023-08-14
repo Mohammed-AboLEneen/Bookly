@@ -1,12 +1,10 @@
 import 'package:bookly/features/home/presentation/view/widgets/cashed_image.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_svg/svg.dart';
 
-import '../../../../../core/utils/assets.dart';
-class ListViewItem extends StatelessWidget {
+class FeaturedBookItem extends StatelessWidget {
 
   final String? imageUrl;
-  const ListViewItem({super.key, required this.imageUrl});
+  const FeaturedBookItem({super.key, required this.imageUrl});
 
   @override
   Widget build(BuildContext context) {

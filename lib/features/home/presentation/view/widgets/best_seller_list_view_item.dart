@@ -6,7 +6,7 @@ import '../../../../../constants.dart';
 import '../../../../../core/utils/routers.dart';
 import '../../../../../core/utils/styles.dart';
 import '../../../data/models/book_model/BookModel.dart';
-import 'book_item.dart';
+import 'featured_book_item.dart';
 import 'book_rating.dart';
 
 class BestSellerListViewItem extends StatelessWidget {
@@ -20,7 +20,7 @@ class BestSellerListViewItem extends StatelessWidget {
 
       onTap: (){
 
-        context.push(BooklyRouters.detailsBookView);
+        context.push(BooklyRouters.detailsBookView, extra: book);
       },
       child: SizedBox(
 
@@ -28,7 +28,7 @@ class BestSellerListViewItem extends StatelessWidget {
         height: 110,
         child: Row(
           children: [
-            ListViewItem(imageUrl: book.volumeInfo?.imageLinks?.smallThumbnail ?? '',),
+            FeaturedBookItem(imageUrl: book.volumeInfo?.imageLinks?.smallThumbnail ?? '',),
             SizedBox(
               width: 30.w,
             ),
@@ -38,15 +38,17 @@ class BestSellerListViewItem extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Harry Potter and the Goblet of Fire',
+                    Text(book.volumeInfo?.title ?? 'No Title',
+                        maxLines: 2,
                         style: BooklyStyles.textStyle20
-                            .copyWith(fontFamily: font2)),
+                            .copyWith(fontFamily: font2, overflow: TextOverflow.ellipsis)),
                     const SizedBox(
                       height: 2,
                     ),
-                    Text('J.K. Rowling',
+                    Text(book.volumeInfo?.authors?[0] ?? 'No Authors',
+                        maxLines: 1,
                         style: BooklyStyles.textStyle14
-                            .copyWith(fontWeight: FontWeight.w500)),
+                            .copyWith(fontWeight: FontWeight.w500, overflow: TextOverflow.ellipsis)),
                     const SizedBox(
                       height: 5,
                     ),
@@ -54,7 +56,7 @@ class BestSellerListViewItem extends StatelessWidget {
 
                       children: [
                         Text(
-                          '19.99 €',
+                          'Free',
                           style: BooklyStyles.textStyle20
                               .copyWith(fontWeight: FontWeight.bold),
                         ),

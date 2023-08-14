@@ -16,7 +16,7 @@ class HomeRepoImplement implements HomeRepo {
     try{
 
       Response response = await dio.get(
-          'https://www.googleapis.com/books/v1/volumes?Filtering=free-ebooks$queryParams&q=subject:computer science');
+          'https://www.googleapis.com/books/v1/volumes?Filtering=free-ebooks$queryParams&q=subject:programming');
 
       List<BookModel> books = [];
 

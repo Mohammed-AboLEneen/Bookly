@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 
 class CustomIcon extends StatelessWidget {
@@ -20,7 +21,9 @@ class CustomIcon extends StatelessWidget {
       child: InkWell(
 
         borderRadius: BorderRadius.circular(20),
-        onTap: (){},
+        onTap: (){
+          context.pop();
+        },
         child: Padding(
           padding: const EdgeInsets.all(5),
           child: SizedBox(
