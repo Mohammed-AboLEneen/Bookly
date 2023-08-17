@@ -1,4 +1,5 @@
-import '../../../data/models/book_model/BookModel.dart';
+
+import '../../../../../core/models/book_model/BookModel.dart';
 
 abstract class NewestBooksStates{}
 

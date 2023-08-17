@@ -1,9 +1,21 @@
 <manifest xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android">
+    <queries>
+        <!-- If your app checks for SMS support -->
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="sms" />
+        </intent>
+        <!-- If your app checks for call support -->
+    </queries>
     <application
         android:label="bookly"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+        android:usesCleartextTraffic="true"
+        android:networkSecurityConfig="@xml/network_security_config"
+        tools:targetApi="n">
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -31,5 +43,6 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+
     </application>
 </manifest>

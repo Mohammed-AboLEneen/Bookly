@@ -3,9 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../constants.dart';
+import '../../../../../core/models/book_model/BookModel.dart';
 import '../../../../../core/utils/routers.dart';
 import '../../../../../core/utils/styles.dart';
-import '../../../data/models/book_model/BookModel.dart';
 import 'featured_book_item.dart';
 import 'book_rating.dart';
 

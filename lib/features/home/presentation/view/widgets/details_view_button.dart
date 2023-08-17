@@ -9,13 +9,15 @@ class DetailsViewButton extends StatelessWidget {
       required this.backGroundColor,
       required this.fontSize,
       required this.borderRadius,
-      required this.text});
+      required this.text,
+      this.action});
 
   final Color fontColor;
   final Color backGroundColor;
   final double fontSize;
   final BorderRadius borderRadius;
   final String text;
+  final void Function()? action;
 
   @override
   Widget build(BuildContext context) {
@@ -23,17 +25,14 @@ class DetailsViewButton extends StatelessWidget {
       child: SizedBox(
         height: 50.h,
         child: TextButton(
-          onPressed: () {},
+          onPressed: action,
           style: TextButton.styleFrom(
               backgroundColor: backGroundColor,
               shadowColor: Colors.black,
               shape: RoundedRectangleBorder(borderRadius: borderRadius)),
           child: Text(
             text,
-            style: TextStyle(
-
-                color: fontColor,
-                fontSize: fontSize),
+            style: TextStyle(color: fontColor, fontSize: fontSize),
           ),
         ),
       ),

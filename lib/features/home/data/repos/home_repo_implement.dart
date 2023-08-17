@@ -1,8 +1,9 @@
 import 'package:bookly/core/errors/failures.dart';
-import 'package:bookly/features/home/data/models/book_model/BookModel.dart';
 import 'package:bookly/features/home/data/repos/home_repo.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+
+import '../../../../core/models/book_model/BookModel.dart';
 
 class HomeRepoImplement implements HomeRepo {
   @override
@@ -16,7 +17,7 @@ class HomeRepoImplement implements HomeRepo {
     try{
 
       Response response = await dio.get(
-          'https://www.googleapis.com/books/v1/volumes?Filtering=free-ebooks$queryParams&q=subject:programming');
+          'https://www.googleapis.com/books/v1/volumes?Filtering=free-ebooks$queryParams&q=subject:computer science');
 
       List<BookModel> books = [];
 

@@ -1,5 +1,5 @@
+import 'package:bookly/core/methods/toast.dart';
 import 'package:bookly/core/utils/styles.dart';
-import 'package:bookly/features/home/data/models/book_model/BookModel.dart';
 import 'package:bookly/features/home/presentation/view/widgets/featured_book_item.dart';
 import 'package:bookly/features/home/presentation/view/widgets/book_rating.dart';
 import 'package:bookly/features/home/presentation/view/widgets/custom_details_view_app_bar.dart';
@@ -9,6 +9,10 @@ import 'package:bookly/features/home/presentation/view_model/simillar_books_cubi
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+import '../../../../core/models/book_model/BookModel.dart';
+
 
 class DetailsBookView extends StatefulWidget {
   const DetailsBookView({super.key, required this.bookModel});
@@ -89,15 +93,15 @@ class _DetailsBookViewState extends State<DetailsBookView> {
                     height: 40,
                   ),
 
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10.0),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
                     child: Row(
 
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        DetailsViewButton(
+                        const DetailsViewButton(
 
-                          text: '19.99 €',
+                          text: 'Free',
                           fontColor: Colors.black,
                           fontSize: 18,
                           backGroundColor: Colors.white,
@@ -109,15 +113,25 @@ class _DetailsBookViewState extends State<DetailsBookView> {
                         ),
                         DetailsViewButton(
 
-                          text: 'Free preview',
+                          text: getText(widget.bookModel.volumeInfo?.previewLink),
                           fontColor: Colors.white,
                           fontSize: 16,
-                          backGroundColor: Color(0xffEF8262),
-                          borderRadius: BorderRadius.only(
+                          backGroundColor: const Color(0xffEF8262),
+                          borderRadius: const BorderRadius.only(
                               topRight: Radius.circular(16),
                               bottomRight: Radius.circular(16)
                           ),
+                          action: (){
 
+                            if(widget.bookModel.volumeInfo?.previewLink == null){
+
+                              showToast(message: 'This Book Not Available Yet', textColor: Colors.white, bgColor: Colors.red);
+                            }else{
+
+                              showToast(message: 'Successfully Entered', textColor: Colors.white, bgColor: Colors.green);
+                              _launchUrl(url: widget.bookModel.volumeInfo?.previewLink ?? 'https://www.google.com/');
+                            }
+                          },
                         )
                       ],
                     ),
@@ -151,5 +165,20 @@ class _DetailsBookViewState extends State<DetailsBookView> {
         ],
       ),
     );
+  }
+
+  Future<void> _launchUrl({required String url}) async {
+    if (!await launchUrl(Uri.parse(url))) {
+      throw Exception('Could not launch $url');
+    }
+  }
+
+  String getText(String? path){
+    if(path == null){
+      return 'Not Available';
+    }else{
+
+      return 'Preview';
+    }
   }
 }
